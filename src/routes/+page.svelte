@@ -156,7 +156,7 @@
           <div class="grid md:grid-cols-2 gap-6">
             <div class="flex items-center gap-4">
               <Phone class="w-6 h-6 text-pink-500" />
-              <p>+91 (XXX) XXX-XXXX</p>
+              <p>+91 (987) 654-3215</p>
             </div>
             <div class="flex items-center gap-4">
               <Mail class="w-6 h-6 text-pink-500" />
