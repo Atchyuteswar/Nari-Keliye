@@ -74,7 +74,7 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-semibold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-                                    Angaliya Fernandes
+                                  Angelina Fernandes
                                 </h3>
                                 <p class="text-gray-600 font-medium">Student of MIT</p>
                             </div>

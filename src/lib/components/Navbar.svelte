@@ -8,7 +8,6 @@
   export let links = [
     { href: '/', text: 'HOME' },
     { href: '/about', text: 'ABOUT' },
-    { href: '/services', text: 'SERVICES' },
     { href: '/contact', text: 'CONTACT' },
     { href: '/login', text: 'SIGN IN' }
   ];
