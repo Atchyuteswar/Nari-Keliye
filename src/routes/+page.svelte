@@ -1,5 +1,6 @@
 <script>
     import { Shield, Clock, MapPin, Heart, Phone, Mail } from 'lucide-svelte';
+    import Navbar from '$lib/components/Navbar.svelte';
   
     const features = [
       {
@@ -39,6 +40,7 @@
   </script>
   
   <div class="w-full">
+    <Navbar />
     <!-- Hero Section -->
     <section class="bg-pink-50 min-h-screen flex items-center px-4 py-16">
       <div class="container mx-auto grid md:grid-cols-2 gap-8 items-center">
