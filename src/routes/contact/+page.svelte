@@ -16,10 +16,10 @@
 
     try {
       await emailjs.sendForm(
-        env.PUBLIC_EMAILJS_SERVICE_ID,
-        env.PUBLIC_EMAILJS_TEMPLATE_ID,
+        env.PUBLIC_EMAILJS_SERVICE_ID as string,
+        env.PUBLIC_EMAILJS_TEMPLATE_ID as string,
         form,
-        env.PUBLIC_EMAILJS_PUBLIC_KEY
+        env.PUBLIC_EMAILJS_PUBLIC_KEY as string
       );
       success = true;
       form.reset();
