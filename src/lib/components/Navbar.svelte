@@ -10,6 +10,7 @@
     { href: '/about', text: 'ABOUT' },
     { href: '/services', text: 'SERVICES' },
     { href: '/contact', text: 'CONTACT' },
+    { href: '/login', text: 'SIGN IN' }
   ];
   export let textColor = 'text-pink-500'; // Changed from text-pink to text-pink-500
   export let navClass = ''; 
