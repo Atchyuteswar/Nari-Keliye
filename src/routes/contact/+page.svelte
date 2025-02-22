@@ -1,6 +1,38 @@
 <script lang="ts">
   import { Phone, Mail, MapPin, Clock } from 'lucide-svelte';
   import Navbar from '../../lib/components/Navbar.svelte';
+  import emailjs from '@emailjs/browser';
+  import { env } from '$env/dynamic/public';
+
+  let loading = false;
+  let success = false;
+  let error = '';
+
+  const handleSubmit = async (e: SubmitEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    loading = true;
+    error = '';
+
+    try {
+      await emailjs.sendForm(
+        env.PUBLIC_EMAILJS_SERVICE_ID,
+        env.PUBLIC_EMAILJS_TEMPLATE_ID,
+        form,
+        env.PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+      success = true;
+      form.reset();
+    } catch (err) {
+      error = 'Failed to send message. Please try again.';
+      console.error('EmailJS Error:', err);
+    } finally {
+      loading = false;
+      setTimeout(() => {
+        success = false;
+      }, 5000);
+    }
+  };
 </script>
 
 <Navbar />
@@ -64,42 +96,82 @@
         <!-- Contact Form -->
         <div class="bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-pink-100/50">
           <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
-          <form class="space-y-6">
-            <div>
+          
+          <form class="space-y-6" on:submit={handleSubmit}>
+            <!-- Success Message -->
+            {#if success}
+              <div class="bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-xl">
+                Message sent successfully!
+              </div>
+            {/if}
+
+            <!-- Error Message -->
+            {#if error}
+              <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl">
+                {error}
+              </div>
+            {/if}
+
+            <div class="group">
               <label class="block text-gray-700 mb-2" for="name">Name</label>
               <input 
                 type="text" 
-                id="name" 
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200"
+                name="user_name"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 
+                       group-hover:border-pink-200 focus:ring-2 focus:ring-pink-500 
+                       focus:border-transparent transition-all duration-200
+                       bg-white/50 backdrop-blur-sm"
                 placeholder="Your name"
               />
             </div>
             
-            <div>
+            <div class="group">
               <label class="block text-gray-700 mb-2" for="email">Email</label>
               <input 
                 type="email" 
-                id="email" 
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200"
+                name="user_email"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 
+                       group-hover:border-pink-200 focus:ring-2 focus:ring-pink-500 
+                       focus:border-transparent transition-all duration-200
+                       bg-white/50 backdrop-blur-sm"
                 placeholder="Your email"
               />
             </div>
             
-            <div>
+            <div class="group">
               <label class="block text-gray-700 mb-2" for="message">Message</label>
               <textarea 
-                id="message" 
-                rows="4" 
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200"
+                name="message"
+                required
+                rows="4"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 
+                       group-hover:border-pink-200 focus:ring-2 focus:ring-pink-500 
+                       focus:border-transparent transition-all duration-200
+                       bg-white/50 backdrop-blur-sm"
                 placeholder="Your message"
               ></textarea>
             </div>
             
             <button 
-              type="submit" 
-              class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity duration-200"
+              type="submit"
+              disabled={loading}
+              class="group relative w-full py-4 bg-gradient-to-r from-pink-500 to-purple-600 
+                     text-white rounded-xl font-semibold overflow-hidden disabled:opacity-70"
             >
-              Send Message
+              <span class="relative z-10 flex items-center justify-center gap-2">
+                {#if loading}
+                  <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                  </svg>
+                {/if}
+                {loading ? 'Sending...' : 'Send Message'}
+              </span>
+              <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 
+                          transition-transform duration-300 translate-x-full 
+                          group-hover:translate-x-0"></div>
             </button>
           </form>
         </div>

@@ -41,6 +41,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@emailjs/browser": "^4.4.1",
 		"@neondatabase/serverless": "^0.10.4",
 		"@node-rs/argon2": "^2.0.2",
 		"@oslojs/crypto": "^1.0.1",
