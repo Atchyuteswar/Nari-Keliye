@@ -4,6 +4,7 @@
   import emailjs from '@emailjs/browser';
   import { env } from '$env/dynamic/public';
   import { onMount } from 'svelte';
+  import Footer from '$lib/components/Footer.svelte';
 
   let loading = false;
   let success = false;
@@ -192,6 +193,8 @@
     </div>
   </section>
 </div>
+
+<Footer />
 
 <style>
   /* Add any additional component-specific styles here */

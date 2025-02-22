@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Shield, Clock, MapPin, Heart, Phone, Mail } from 'lucide-svelte';
     import Navbar from '../lib/components/Navbar.svelte';
+    import Footer from '../lib/components/Footer.svelte';
   
   
     const features = [
@@ -167,6 +168,8 @@
       </div>
     </section>
   </div>
+
+  <Footer />
 
   <style>
 
