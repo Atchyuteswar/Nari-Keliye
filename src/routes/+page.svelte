@@ -187,4 +187,52 @@
     .animation-delay-2000 {
         animation-delay: 2s;
     }
+
+    /* Custom Scrollbar Styles */
+    :global(::-webkit-scrollbar) {
+      width: 8px;
+      height: 8px;
+    }
+
+    :global(::-webkit-scrollbar-track) {
+      background: rgba(249, 168, 212, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    :global(::-webkit-scrollbar-thumb) {
+      background: linear-gradient(
+        45deg,
+        rgba(236, 72, 153, 0.8),
+        rgba(217, 70, 239, 0.8)
+      );
+      border-radius: 100vh;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+
+    :global(::-webkit-scrollbar-thumb:hover) {
+      background: linear-gradient(
+        45deg,
+        rgba(219, 39, 119, 1),
+        rgba(192, 38, 211, 1)
+      );
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+
+    :global(::-webkit-scrollbar-corner) {
+      background: transparent;
+    }
+
+    /* For Firefox */
+    :global(html) {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(236, 72, 153, 0.8) rgba(249, 168, 212, 0.1);
+    }
+
+    /* Smooth Scrolling */
+    :global(html) {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   </style>
