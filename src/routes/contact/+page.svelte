@@ -3,10 +3,16 @@
   import Navbar from '../../lib/components/Navbar.svelte';
   import emailjs from '@emailjs/browser';
   import { env } from '$env/dynamic/public';
+  import { onMount } from 'svelte';
 
   let loading = false;
   let success = false;
   let error = '';
+
+  onMount(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init(env.PUBLIC_EMAILJS_PUBLIC_KEY);
+  });
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
@@ -15,22 +21,29 @@
     error = '';
 
     try {
-      await emailjs.sendForm(
-        env.PUBLIC_EMAILJS_SERVICE_ID as string,
-        env.PUBLIC_EMAILJS_TEMPLATE_ID as string,
+      const result = await emailjs.sendForm(
+        env.PUBLIC_EMAILJS_SERVICE_ID,
+        env.PUBLIC_EMAILJS_TEMPLATE_ID,
         form,
-        env.PUBLIC_EMAILJS_PUBLIC_KEY as string
+        env.PUBLIC_EMAILJS_PUBLIC_KEY
       );
-      success = true;
-      form.reset();
+
+      if (result.text === 'OK') {
+        success = true;
+        form.reset();
+      } else {
+        throw new Error('Failed to send email');
+      }
     } catch (err) {
-      error = 'Failed to send message. Please try again.';
       console.error('EmailJS Error:', err);
+      error = err instanceof Error ? err.message : 'Failed to send message. Please try again.';
     } finally {
       loading = false;
-      setTimeout(() => {
-        success = false;
-      }, 5000);
+      if (success) {
+        setTimeout(() => {
+          success = false;
+        }, 5000);
+      }
     }
   };
 </script>
