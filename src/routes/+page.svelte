@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { Shield, Clock, MapPin, Heart, Phone, Mail } from 'lucide-svelte';
     import Navbar from '../lib/components/Navbar.svelte';
   
@@ -40,62 +40,64 @@
     ];
   </script>
   
-  <div class="w-full ">
+  <div class="w-full">
     <Navbar />
     <!-- Hero Section -->
-    <section class="relative min-h-screen bg-gradient-to-br from-pink-50 to-pink-100 overflow-hidden">
-      <div class="absolute inset-0 bg-pattern opacity-5"></div>
-      <!-- Added pt-20 for mobile and adjusted desktop padding -->
-      <div class="container mx-auto px-4 pt-20 md:py-24 relative z-10">
-        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <!-- Left Column with increased top padding on mobile -->
-          <div class="space-y-6 md:space-y-8 text-center md:text-left md:px-8 pt-8 md:pt-0">
-            <div class="space-y-4">
-              <h1 class="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
-                Booking Driver<br>
-                <span class="text-pink-600">Exclusively</span>
-                <br class="hidden md:block"/>for Women
-              </h1>
-              <p class="text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto md:mx-0">
-                Safe, reliable, and comfortable rides by women, for women. Experience travel with confidence.
-              </p>
-            </div>
-  
-            <!-- Booking Card -->
-            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 max-w-md mx-auto md:mx-0">
-              <div class="flex items-center gap-4 md:gap-6 mb-6">
-                <div class="w-16 md:w-20 h-16 md:h-20 rounded-full bg-pink-100 ring-4 ring-pink-50 overflow-hidden">
-                  <img src="girl-img.jpg" alt="Driver" class="w-full h-full object-cover" />
+    <section class="relative min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        
+        <!-- Animated background circles -->
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        
+        <div class="container mx-auto px-16 pt-32 md:pt-22 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="space-y-4 text-center md:text-left">
+                    <div class="space-y-6">
+                        <span class="inline-block px-4 py-2 bg-pink-100/60 backdrop-blur-sm text-pink-600 rounded-full text-sm font-medium">
+                            Welcome to Nari Keliye
+                        </span>
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                            Safe Travel for
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
+                                Every Woman
+                            </span>
+                        </h1>
+                    </div>
+
+                    <!-- Booking Card -->
+                    <div class="bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-pink-100/50">
+                        <div class="flex items-center gap-6 mb-6">
+                            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 p-1">
+                                <img src="girl-img.jpg" alt="Driver" class="w-full h-full object-cover rounded-full" />
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                                    Angaliya Fernandes
+                                </h3>
+                                <p class="text-gray-600 font-medium">Student of MIT</p>
+                            </div>
+                        </div>
+                        <button class="group relative w-full py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold overflow-hidden">
+                            <span class="relative z-10">Book Now</span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 transition-transform duration-300 translate-x-full group-hover:translate-x-0"></div>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                  <h3 class="text-lg md:text-xl font-semibold text-gray-800">Angaliya Fernandes</h3>
-                  <p class="text-sm md:text-base text-pink-500 font-medium">Student of MIT</p>
+
+                <!-- Right Column with floating mockup -->
+                <div class="relative hidden md:block">
+                    <div class="relative z-10 transform hover:scale-105 transition-all duration-500 hover:rotate-2">
+                        <img 
+                            src="mobile-hero.png" 
+                            alt="App Demo" 
+                            class="w-2/5 mx-auto drop-shadow-2xl rounded-[2.5rem]"
+                        />
+                    </div>
                 </div>
-              </div>
-              <button class="w-full bg-pink-500 text-white py-3 md:py-4 px-6 md:px-8 rounded-xl font-semibold 
-                             hover:bg-pink-600 transform hover:-translate-y-0.5 transition-all duration-200
-                             focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
-                Book Now
-              </button>
             </div>
-          </div>
-  
-          <!-- Right Column -->
-          <div class="relative mt-8 md:mt-0 md:block">
-            <div class="absolute -top-8 -right-8 w-48 md:w-64 h-48 md:h-64 bg-pink-200 rounded-full filter blur-3xl opacity-30"></div>
-            <div class="absolute -bottom-8 -left-8 w-48 md:w-64 h-48 md:h-64 bg-purple-200 rounded-full filter blur-3xl opacity-30"></div>
-            <div class="flex items-center justify-center">
-              <div class="w-full max-w-xs md:max-w-lg transform hover:scale-105 transition-transform duration-300">
-                <img 
-                  src="mobile-hero.png" 
-                  alt="App Demo" 
-                  class="w-4/5 md:w-3/5 mx-auto h-auto drop-shadow-2xl rounded-2xl"
-                />
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
   
     <!-- Features Section -->
@@ -169,5 +171,20 @@
   <style>
     .bg-pattern {
       background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f9a8d4' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+    
+    .animation-delay-2000 {
+        animation-delay: 2s;
     }
   </style>
