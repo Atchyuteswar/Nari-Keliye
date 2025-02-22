@@ -11,6 +11,7 @@ module.exports = {
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',
+        'loading-bar': 'loading-bar 1s ease-in-out forwards',
       },
       keyframes: {
         gradient: {
@@ -22,6 +23,11 @@ module.exports = {
             'background-size': '200% 200%',
             'background-position': 'right center'
           },
+        },
+        'loading-bar': {
+          '0%': { width: '0%' },
+          '50%': { width: '70%' },
+          '100%': { width: '100%' },
         },
       },
     },
